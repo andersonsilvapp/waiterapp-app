@@ -24,11 +24,16 @@ export function Main() {
     setSelectedTable(table);
   }
 
+  function handleCencelOrder() {
+    setSelectedTable('');
+  }
+
   return (
     <>
       <Container>
         <Header
           selectedTable={selectedTable}
+          onCancelOrder={handleCencelOrder}
         />
         <CategoriesContainer>
           <Categories />
