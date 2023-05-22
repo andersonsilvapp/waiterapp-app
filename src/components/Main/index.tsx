@@ -6,11 +6,23 @@ import { Menu } from '../Menu';
 import { TableModal } from '../TableModal';
 
 import { Container, CategoriesContainer, MenuContainer, Footer, FooterContainer } from './styles';
+import { Cart } from '../Cart';
+import { CartItem } from '../../@types/CartItem';
+import { products } from '../../mocks/products';
 
 export function Main() {
   const [isTableModalVisible, setIsTableModalVisible] = useState(false);
   const [selectedTable, setSelectedTable] = useState('');
-
+  const [cartItems, setCartItems] = useState<CartItem[]>([
+    {
+      quantity: 1,
+      product: products[0]
+    },
+    {
+      quantity: 2,
+      product: products[1]
+    },
+  ]);
 
   function handleOpenModal() {
     setIsTableModalVisible(true);
@@ -51,6 +63,12 @@ export function Main() {
             <Button onPress={handleOpenModal}>
             Novo pedido
             </Button>
+          )}
+
+          {selectedTable && (
+            <Cart
+              cartItems={cartItems}
+            />
           )}
         </FooterContainer>
       </Footer>
